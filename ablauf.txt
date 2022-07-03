@@ -1,0 +1,8 @@
+ - SPlanKl_Basis.xml --> Klassen, Freie Tage, Schulwochen
+ - Schulwochen --> von am neuesten bis am ältesten --> SPlanKl_Sw{id}.xml
+   --> erstes Ergebnis != 404 --> normaler Stundenplan (BESSER: HEAD-Requests)
+ - ausgewählte Woche --> WPlanKl_{datum}.xml für jeden Tag (BESSER: HEAD-Requests)
+   --> Plan für den jeweiligen Tag
+   --> wenn 404, dann siehe Stundenplan (Nachricht: kein Vertretungsplan verfügbar)
+
+==> AUSGABE
