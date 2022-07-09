@@ -33,8 +33,8 @@ export function processAuthorization(req, res) {
     return `Basic ${Buffer.from(`${user}:${password}`).toString('base64')}`;
 }
 
-export function processIntegerID(req, res) {
-    const id = parseInt(req.query.id);
+export function processSchoolID(req, res) {
+    const id = parseInt(req.query.school);
 
     if (isNaN(id)) {
         sendError(res, 400, 'Missing or invalid school id.');
@@ -49,11 +49,11 @@ export async function processBaseData(req, res) {
     if (authorization === null)
         return null;
 
-    const id = processIntegerID(req, res);
-    if (id === null)
+    const school = processSchoolID(req, res);
+    if (school === null)
         return null;
 
-    const requestURL = `https://www.stundenplan24.de/${id}/wplan/wdatenk/SPlanKl_Basis.xml`;
+    const requestURL = `https://www.stundenplan24.de/${school}/wplan/wdatenk/SPlanKl_Basis.xml`;
 
     const response = await fetch(requestURL, {
         method: 'GET',

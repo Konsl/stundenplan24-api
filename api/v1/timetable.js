@@ -1,7 +1,7 @@
 import {
     executeHEADRequest,
     processAuthorization,
-    processIntegerID,
+    processSchoolID,
     processWeekID,
     sendJSON
 } from '../../utils/http.js';
@@ -20,8 +20,8 @@ export default async (req, res) => {
     if (authorization === null)
         return;
 
-    const id = processIntegerID(req, res);
-    if (id === null)
+    const school = processSchoolID(req, res);
+    if (school === null)
         return;
 
     const week = processWeekID(req, res);
@@ -29,10 +29,10 @@ export default async (req, res) => {
         return;
 
     if (week !== -1) {
-        const firstTryCode = await executeHEADRequest(getRequestURL(id, week), authorization);
+        const firstTryCode = await executeHEADRequest(getRequestURL(school, week), authorization);
 
         if (Math.floor(firstTryCode / 100) === 2) {
-            const actualDataResponse = await fetch(getRequestURL(id, week), {
+            const actualDataResponse = await fetch(getRequestURL(school, week), {
                 method: 'GET',
                 headers: {
                     authorization: authorization
