@@ -1,4 +1,4 @@
-class APIDate {
+export class APIDate {
     year;
     month;
     day;
@@ -16,6 +16,38 @@ class APIDate {
 
         return `${year}-${month}-${day}`;
     }
+
+    isBefore(other) {
+        return this.year < other.year ? true : this.year > other.year ? false :
+            this.month < other.month ? true : this.month > other.month ? false :
+            this.day < other.day;
+    }
+
+    isBeforeOrEqual(other) {
+        return this.year < other.year ? true : this.year > other.year ? false :
+            this.month < other.month ? true : this.month > other.month ? false :
+            this.day <= other.day;
+    }
+
+    isEqual(other) {
+        return this.year == other.year && this.month == other.month && this.day == other.day;
+    }
+
+    isAfterOrEqual(other) {
+        return this.year > other.year ? true : this.year < other.year ? false :
+            this.month > other.month ? true : this.month < other.month ? false :
+            this.day >= other.day;
+    }
+
+    isAfter(other) {
+        return this.year > other.year ? true : this.year < other.year ? false :
+            this.month > other.month ? true : this.month < other.month ? false :
+            this.day > other.day;
+    }
+
+    static compare(a, b) {
+        return a.isEqual(b) ? 0 : a.isAfter(b) ? 1 : -1;
+    }
 }
 
 export function parse6CharDate(date) {
@@ -27,6 +59,15 @@ export function parse6CharDate(date) {
 
 export function parseDotSeparatedDate(date) {
     const split = date.split('.');
+
+    return new APIDate(
+        parseInt(split[2]),
+        parseInt(split[1]),
+        parseInt(split[0]));
+}
+
+export function parseMinusSeparatedDate(date) {
+    const split = date.split('-');
 
     return new APIDate(
         parseInt(split[2]),

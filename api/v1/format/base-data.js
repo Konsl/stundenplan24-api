@@ -46,14 +46,17 @@ export function readDataRanges(data) {
     };
 }
 
-export function readWeeks(data) {
+export function readWeeks(data, apiDates) {
     return {
         weeks: data.splan.Schulwochen.Sw.map(w => {
+            const firstDay = parseDotSeparatedDate(w.$.SwDatumVon);
+            const lastDay = parseDotSeparatedDate(w.$.SwDatumBis);
+
             return {
                 id: parseInt(w._),
                 type: w.$.SwWo,
-                firstDay: parseDotSeparatedDate(w.$.SwDatumVon).toString(),
-                lastDay: parseDotSeparatedDate(w.$.SwDatumBis).toString(),
+                firstDay: apiDates ? firstDay : firstDay.toString(),
+                lastDay: apiDates ? lastDay : lastDay.toString(),
                 weekOfYear: parseInt(w.$.SwKw)
             };
         })

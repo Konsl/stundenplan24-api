@@ -53,6 +53,10 @@ export async function processBaseData(req, res) {
     if (school === null)
         return null;
 
+    return requestBaseData(authorization, school);
+}
+
+export async function requestBaseData(authorization, school){
     const requestURL = `https://www.stundenplan24.de/${school}/wplan/wdatenk/SPlanKl_Basis.xml`;
 
     const response = await fetch(requestURL, {
