@@ -30,6 +30,8 @@ Für diese Fälle gibt es eine separate Liste, die zu jeder Schul-ID angibt, unt
 
 ### Probleme der API und der Wochenplan-Webseite
 
+*Beschreibung von Problemen und Verbesserungsvorschlägen, die zum Teil in Sekunden oder wenigen Minuten umsetzbar sind*
+
 - **API unterstützt keine Daten-Komprimierung** <br>
   HTTP bietet die Möglichkeit, Antwortdaten (z.B. mit gzip) zu komprimieren. Diese Funktion wird von den meisten Browsern und Servern unterstützt,
   von Stundenplan24.de jedoch nicht. Mit Unterstützung dieser Funktion könnte im Fall von Stundenplan24.de die Menge der übertragenen Daten
